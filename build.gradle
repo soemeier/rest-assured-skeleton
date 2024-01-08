@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+defaultTasks 'clean', 'test', 'aggregate'
+
+ext {
+    junitVersion = '5.10.0'
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:3.24.2"
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
